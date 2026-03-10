@@ -39,9 +39,9 @@
   };
 
   # Desktop & Display
-  services.xserver.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
-  services.desktopManager.pantheon.enable = true;
+  #services.xserver.enable = true;
+  #services.xserver.displayManager.lightdm.enable = true;
+  #services.desktopManager.pantheon.enable = true;
   services.xserver.xkb = {
     layout = "au";
     variant = "";
@@ -82,7 +82,7 @@
   fileSystems."/mnt/sdb1" = {
     device = "/dev/disk/by-uuid/1E0C-1FCE";
     fsType = "exfat";
-    options = [ "nofail" "uid=1000" "gid=100" ];
+    options = [ "nofail" "uid=1000" "gid=100" "x-systemd.device-timeout=5s" ];
   };
 
   fileSystems."/mnt/nvme0n1p2" = {
