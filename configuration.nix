@@ -11,6 +11,7 @@
       ./server.nix
       ./maintenance.nix
       ./security.nix
+      ./packages.nix
     ];
 
   # Bootloader setup
@@ -59,28 +60,6 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-
-  # Systeem pakketten
-  environment.systemPackages = with pkgs; [
-    librewolf
-    hyprland
-    libreoffice
-    git
-    curl
-    wget
-    vim
-    zsh
-    docker
-    ani-cli
-    lobster
-    obsidian
-    exfat
-    exfatprogs
-    gh
-    btop
-    lazygit
-    kitty
-  ];
 
   programs.nix-ld.enable = true;
   system.stateVersion = "25.11";
