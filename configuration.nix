@@ -16,7 +16,7 @@
 
   # Bootloader setup
   boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 2; # Belangrijk voor je kleine 100MB boot partitie
+  boot.loader.systemd-boot.configurationLimit = 5; # Belangrijk voor je kleine 100MB boot partitie
   boot.loader.timeout = 5; # Verhoogd zodat je tijd hebt om te kiezen
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -39,9 +39,9 @@
   };
 
   # Desktop & Display
-  #services.xserver.enable = true;
-  #services.xserver.displayManager.lightdm.enable = true;
-  #services.desktopManager.pantheon.enable = true;
+  services.xserver.enable = false;
+  services.xserver.displayManager.lightdm.enable = false;
+  services.desktopManager.pantheon.enable = false;
   services.xserver.xkb = {
     layout = "au";
     variant = "";
@@ -79,11 +79,11 @@
     options = [ "nofail" "defaults" ];
   };
 
-  fileSystems."/mnt/sdb1" = {
-    device = "/dev/disk/by-uuid/1E0C-1FCE";
-    fsType = "exfat";
-    options = [ "nofail" "uid=1000" "gid=100" "x-systemd.device-timeout=5s" ];
-  };
+  #fileSystems."/mnt/sdb1" = {
+   # device = "/dev/disk/by-uuid/1E0C-1FCE";
+    #fsType = "exfat";
+    #options = [ "nofail" "noauto" ];
+  #};
 
   fileSystems."/mnt/nvme0n1p2" = {
     device = "/dev/disk/by-uuid/4fc6c446-fa7d-4248-acc8-5e014151363c";
@@ -98,7 +98,7 @@
     enable = true;
     ohMyZsh = {
       enable = true;
-      plugins = [ "git" "sudo" "docker" "alias" ];
+      plugins = [ "git" "sudo" "docker" "aliases" ];
       theme = "robbyrussell";
     };
   };

@@ -7,23 +7,22 @@
     xwayland.enable = true;
   };
 
-  # 2. Portal instellen (nodig voor Omarchy scripts/screensharing)
+  # 2. Portal instellen
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   };
 
-  # 3. Omarchy/Hyprland specifieke settings
-  # Je kunt hier ook systeem-brede variabelen zetten die Omarchy nodig heeft
-  environment.sessionVariables = {
-    # Als je een NVIDIA kaart hebt, zijn deze vaak nodig:
-    # LIBVA_DRIVER_NAME = "nvidia";
-    # GBM_BACKEND = "nvidia-drm";
-    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    
-    # Voor Wayland ondersteuning in apps:
-    NIXOS_OZONE_WL = "1";
-  };
+  # 3. SDDM met Autologin (omzeilt het zwarte scherm)
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "brik";
+  };
+
+  # 4. Omarchy/Hyprland specifieke settings
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
 }
